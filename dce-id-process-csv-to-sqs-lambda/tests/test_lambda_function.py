@@ -3,7 +3,7 @@ import pytest
 from freezegun import freeze_time
 
 from moto import mock_s3, mock_sqs
-from ..src import lambda_function
+from src import lambda_function
 
 _region = 'eu-west-1'
 _bucket = 'test-dce-id-users-bulk-operation'
