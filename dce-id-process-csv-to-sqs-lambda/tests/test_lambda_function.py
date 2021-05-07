@@ -25,6 +25,7 @@ def aws_credentials(monkeypatch):
     monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "testing")
     monkeypatch.setenv("AWS_SECURITY_TOKEN", "testing")
     monkeypatch.setenv("AWS_SESSION_TOKEN", "testing")
+    monkeypatch.setenv("AWS_DEFAULT_REGION", _region)
 
     """Mocked lambda environment variables"""
     monkeypatch.setenv('CREATE_USERS_SQS_QUEUE', 'CREATE_USERS_SQS_QUEUE')

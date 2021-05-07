@@ -1,0 +1,28 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: Upload Python Package
+
+on: push
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        path: dce-id-process-csv-to-sqs-lambda/src/*
+        filename: 'dce-id-process-csv-to-sqs-lambda.zip'
+        exclusions: '__init__.py'
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'master')
+      with:
+        files: dce-id-process-csv-to-sqs-lambda.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

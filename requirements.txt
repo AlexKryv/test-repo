@@ -2,3 +2,4 @@ boto3~=1.17.68
 pytest~=6.2.4
 freezegun~=1.1.0
 moto~=2.0.6
+docker~=5.0.0
