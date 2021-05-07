@@ -25,6 +25,7 @@ def process_file(bucket, file, s3_client, queue, activity_queue):
     counter = 0
     if activity_queue:
         send_activity_message(meta, file_name, uploaded_time, counter, activity_queue)
+        
     # This should stream file from s3 and process it line by line without uploading all file in memory
     for row in csv.DictReader(codecs.getreader("utf-8")(s3_obj.get()['Body'])):
         line = list(row.values())
