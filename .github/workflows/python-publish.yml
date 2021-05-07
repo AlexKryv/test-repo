@@ -19,4 +19,4 @@ jobs:
       with:
         path: dce-id-process-csv-to-sqs-lambda/src/*
         filename: 'dce-id-process-csv-to-sqs-lambda.zip'
-        exclusions: '*.git*
+        exclusions: '*.git*'
