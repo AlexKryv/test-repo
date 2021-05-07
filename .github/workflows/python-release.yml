@@ -3,7 +3,10 @@
 
 name: Main
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -11,17 +14,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        run: echo ${{ github.sha }} > Release.txt
-      - name: Test
-        run: cat Release.txt
       - name: Install dependencies
         run: |
           zip -r dce-id-process-csv-to-sqs-lambda.zip dce-id-process-csv-to-sqs-lambda
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: dce-id-process-csv-to-sqs-lambda.zip
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
