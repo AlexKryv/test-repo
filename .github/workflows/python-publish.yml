@@ -19,9 +19,4 @@ jobs:
       with:
         path: dce-id-process-csv-to-sqs-lambda/src/*
         filename: 'dce-id-process-csv-to-sqs-lambda.zip'
-        exclusions: '*.git*'
-    - name: Release
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "dce-id-process-csv-to-sqs-lambda.zi"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        exclusions: '__init__.py'
