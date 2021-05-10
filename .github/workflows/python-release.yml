@@ -24,7 +24,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+#        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: dce-id-process-csv-to-sqs-lambda.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
