@@ -53,7 +53,6 @@ def test_should_fails_if_no_requester_meta(monkeypatch):
     meta = {}
     s3.put_object(Bucket=_bucket, Key=s3_key, Body='email, name\nuser1@mail.com,User1\nuser2@mail.com,User2',
                   Metadata=meta)
-
     # When
     with pytest.raises(AttributeError):
         lambda_function.lambda_handler(_event, {})
